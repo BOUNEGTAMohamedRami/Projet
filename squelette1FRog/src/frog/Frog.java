@@ -12,7 +12,7 @@ public class Frog implements IFrog {
 
 	public Frog (Game game){
 	this.game = game;
-	this.myPosition = new Case(5 ,0);
+	this.myPosition = new Case(12 ,0);
 	}
 
 	@Override
@@ -27,6 +27,20 @@ public class Frog implements IFrog {
 
 	@Override
 	public void move(Direction key) {
+	    if (key ==Direction.up){
+        myPosition.ord= myPosition.ord + 1;
+	    };
+	    if (key == Direction.left){
+	        myPosition.absc= myPosition.absc -1 ;
+        };
+	    if (key == Direction.down){
+	        myPosition.ord = myPosition.ord - 1;
+        }
+	    if (key == Direction.right){
+	        myPosition.absc = myPosition.absc + 1;
+        }
+
+
 
 	}
 }
