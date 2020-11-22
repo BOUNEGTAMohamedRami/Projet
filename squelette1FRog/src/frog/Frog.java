@@ -9,13 +9,13 @@ public class Frog implements IFrog {
 
     private Game game;
     private Case myPosition;
-    private Direction newDirection;
+    //private Direction newDirection;
 
 
     public Frog (Game game){
         this.game = game;
         this.myPosition = new Case(12 ,0);
-        this.newDirection = null;
+        //this.newDirection = null;
     }
 
     @Override
