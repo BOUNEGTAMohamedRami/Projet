@@ -9,13 +9,13 @@ public class Frog implements IFrog {
 
     private Game game;
     private Case myPosition;
-    //private Direction newDirection;
+    private Direction newDirection;
 
 
     public Frog (Game game){
         this.game = game;
         this.myPosition = new Case(12 ,0);
-        //this.newDirection = null;
+        this.newDirection = null;
     }
 
     @Override
@@ -25,8 +25,7 @@ public class Frog implements IFrog {
 
     @Override
     public Direction getDirection() {
-        return null;
-        //return this.newDirection;
+        return this.newDirection;
     }
 
     @Override
@@ -36,30 +35,33 @@ public class Frog implements IFrog {
         if (key.equals(Direction.up)){
             if (myPosition.ord >=19) {
             } else {
-                 //myDirection = Direction.up ;
-                 myPosition = new Case ( myPosition.absc, myPosition.ord + 1);
 
+                 myPosition = new Case ( myPosition.absc, myPosition.ord + 1);
+                newDirection = key.up;
             }
-        };
+        }
         if (key.equals(Direction.down)){
             if (myPosition.ord <=0) {
             } else {
-               // myDirection = Direction.down;
+
                 myPosition = new Case (myPosition.absc  , myPosition.ord - 1);
+                newDirection = key.down ;
             }
-        };
+        }
         if (key.equals(Direction.right)){
             if (myPosition.absc >=25) {
             } else {
-                //myDirection = Direction.right;
+
                 myPosition = new Case( myPosition.absc+1, myPosition.ord);
+                newDirection = key.right;
             }
         };
         if (key.equals(Direction.left)){
             if (myPosition.absc <=0) {
             } else {
-                //myDirection = Direction.left;
+
                 myPosition = new Case(myPosition.absc-1, myPosition.ord);
+                newDirection = key.left;
             }
         };
 
