@@ -77,8 +77,13 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		//if isSafe(Case c)
-		return false;
+		// TODO
+		if (environment.isSafe(frog.getPosition())) {
+			return false;
+		}else{
+				graphic.endGameScreen("Vous avez perdu !! :'(");
+				return true;
+		}
 	}
 
 	/**
@@ -89,7 +94,12 @@ public class Game {
 	 */
 	public boolean testWin() {
 		// TODO
-		return false;
+		if (environment.isWinningPosition(frog.getPosition())) {
+			graphic.endGameScreen("La partie est gagnée :)");
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	/**

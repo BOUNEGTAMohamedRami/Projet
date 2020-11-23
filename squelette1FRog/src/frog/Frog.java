@@ -34,10 +34,11 @@ public class Frog implements IFrog {
 
         if (key.equals(Direction.up)){
             if (myPosition.ord >=19) {
+            game.testWin();
             } else {
 
                  myPosition = new Case ( myPosition.absc, myPosition.ord + 1);
-                newDirection = key.up;
+                newDirection = key;
             }
         }
         if (key.equals(Direction.down)){
@@ -45,7 +46,7 @@ public class Frog implements IFrog {
             } else {
 
                 myPosition = new Case (myPosition.absc  , myPosition.ord - 1);
-                newDirection = key.down ;
+                newDirection = key ;
             }
         }
         if (key.equals(Direction.right)){
@@ -53,7 +54,7 @@ public class Frog implements IFrog {
             } else {
 
                 myPosition = new Case( myPosition.absc+1, myPosition.ord);
-                newDirection = key.right;
+                newDirection = key;
             }
         };
         if (key.equals(Direction.left)){
@@ -61,11 +62,12 @@ public class Frog implements IFrog {
             } else {
 
                 myPosition = new Case(myPosition.absc-1, myPosition.ord);
-                newDirection = key.left;
+                newDirection = key;
             }
-        };
+        }
 
 
 
     }
 }
+
