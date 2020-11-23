@@ -34,7 +34,6 @@ public class Frog implements IFrog {
 
         if (key.equals(Direction.up)){
             if (myPosition.ord >=19) {
-            game.testWin();
             } else {
 
                  myPosition = new Case ( myPosition.absc, myPosition.ord + 1);
@@ -63,9 +62,11 @@ public class Frog implements IFrog {
 
                 myPosition = new Case(myPosition.absc-1, myPosition.ord);
                 newDirection = key;
+
             }
         }
-
+        game.testWin();
+        game.testLose();
 
 
     }
