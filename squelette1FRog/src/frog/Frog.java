@@ -32,7 +32,7 @@ public class Frog implements IFrog {
     public void move(Direction key) {
 
 
-        if (key.equals(Direction.up)){
+       if (key.equals(Direction.up)){
             if (myPosition.ord >=19) {
             } else {
 
@@ -69,6 +69,5 @@ public class Frog implements IFrog {
         game.testLose();
 
 
-    }
-}
+    }}
 
