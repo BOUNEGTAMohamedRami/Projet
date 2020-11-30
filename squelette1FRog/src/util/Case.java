@@ -9,5 +9,4 @@ public class Case {
 		this.absc = absc;
 		this.ord = ord;
 	}
-
 }

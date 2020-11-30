@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import environment.Car;
 import environment.Environment;
 import frog.Frog;
 import givenEnvironment.GivenEnvironment;
 import graphicalElements.FroggerGraphic;
 import graphicalElements.IFroggerGraphics;
+import util.Case;
 
 public class Main {
 
@@ -19,7 +21,7 @@ public class Main {
 		int width = 26;
 		int height = 20;
 		int tempo = 100;
-		int minSpeedInTimerLoops = 3;
+		int minSpeedInTimerLoops = 6;
 		double defaultDensity = 0.2;
 		
 		//Cr�ation de l'interface graphique
@@ -28,6 +30,8 @@ public class Main {
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		//Cr�ation et liason de la grenouille
 		IFrog frog = new Frog(game);
+		Car car = new Car(game, new Case(3,1), true);
+
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Cr�ation et liaison de l'environnement
