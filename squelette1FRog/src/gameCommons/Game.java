@@ -3,6 +3,7 @@ package gameCommons;
 import java.awt.Color;
 import java.util.Random;
 
+import environment.Car;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
 import util.Case;
@@ -77,13 +78,13 @@ public class Game {
 	 * @return true si le partie est perdue
 	 */
 	public boolean testLose() {
-		/*if (environment.isSafe(frog.getPosition())) {
+		if (environment.isSafe(frog.getPosition())) {
 			return false;
 		}else{
-				graphic.endGameScreen("Vous avez perdu !! :'(");*/
+				graphic.endGameScreen("Vous avez perdu !! :'(");
 				return true;
 		}
-	//}
+	}
 
 	/**
 	 * Teste si la partie est gagnee et lance un �cran de fin appropri� si tel

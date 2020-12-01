@@ -21,8 +21,8 @@ public class Main {
 		int width = 26;
 		int height = 20;
 		int tempo = 100;
-		int minSpeedInTimerLoops = 6;
-		double defaultDensity = 0.2;
+		int minSpeedInTimerLoops = 3;
+		double defaultDensity = 0.09;
 		
 		//Cr�ation de l'interface graphique
 		IFroggerGraphics graphic = new FroggerGraphic(width, height);
@@ -30,8 +30,6 @@ public class Main {
 		Game game = new Game(graphic, width, height, minSpeedInTimerLoops, defaultDensity);
 		//Cr�ation et liason de la grenouille
 		IFrog frog = new Frog(game);
-		Car car = new Car(game, new Case(3,1), true);
-
 		game.setFrog(frog);
 		graphic.setFrog(frog);
 		//Cr�ation et liaison de l'environnement
