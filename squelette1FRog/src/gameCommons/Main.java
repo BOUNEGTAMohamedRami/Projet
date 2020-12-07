@@ -39,9 +39,8 @@ public class Main {
 		//Cr�ation et liaison de l'environnement
 //		IEnvironment env = new Environment(game);
 //		game.setEnvironment(env);
-//
-//	}
-	// Création de l'environnement Infini !
+
+		// Création de l'environnement Infini !
 		IEnvironment env = new EnvInf(game);
 		game.setEnvironment(env);
 		//Boucle principale : l'environnement s'acturalise tous les tempo milisecondes
