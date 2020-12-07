@@ -3,10 +3,12 @@ package gameCommons;
 import java.awt.Color;
 import java.util.Random;
 
+import environment.Car;
 import graphicalElements.Element;
 import graphicalElements.IFroggerGraphics;
+import util.Case;
 
-public class Game {
+public class GameInf {
 
 	public final Random randomGen = new Random();
 
@@ -15,30 +17,34 @@ public class Game {
 	public final int height;
 	public final int minSpeedInTimerLoops;
 	public final double defaultDensity;
-
+	public int movement_up_down = 0;
+	public final long time_played;
 	// Lien aux objets utilis�s
 	private IEnvironment environment;
 	private IFrog frog;
 	private IFroggerGraphics graphic;
 
 	/**
-	 *  @param graphic
+	 *
+	 * @param graphic
 	 *            l'interface graphique
 	 * @param width
 	 *            largeur en cases
 	 * @param height
- *            hauteur en cases
+	 *            hauteur en cases
 	 * @param minSpeedInTimerLoop
-*            Vitesse minimale, en nombre de tour de timer avant d�placement
+	 *            Vitesse minimale, en nombre de tour de timer avant d�placement
 	 * @param defaultDensity
+	 *            densite de voiture utilisee par defaut pour les routes
 	 */
-	public Game(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity) {
+	public GameInf(IFroggerGraphics graphic, int width, int height, int minSpeedInTimerLoop, double defaultDensity, long time_played) {
 		super();
 		this.graphic = graphic;
 		this.width = width;
 		this.height = height;
 		this.minSpeedInTimerLoops = minSpeedInTimerLoop;
 		this.defaultDensity = defaultDensity;
+		this.time_played = time_played;
 	}
 
 	/**
@@ -77,8 +83,10 @@ public class Game {
 		if (environment.isSafe(frog.getPosition())) {
 			return false;
 		}else{
-				graphic.endGameScreen("Vous avez perdu !! :'(");
-				return true;
+			long time_played_in_game = (long) ((System.currentTimeMillis()-this.time_played) /1000.0);
+
+			graphic.endGameScreen("La partie est perdue :'( \n Temps de jeu en sec: " + Long.toString(time_played_in_game));
+			return true;
 		}
 	}
 
@@ -90,7 +98,9 @@ public class Game {
 	 */
 	public boolean testWin() {
 		if (environment.isWinningPosition(frog.getPosition())) {
-			graphic.endGameScreen("La partie est gagnée :)");
+			long time_played_in_game = (long) ((System.currentTimeMillis()-this.time_played) /1000.0);
+
+			graphic.endGameScreen("La partie est gagnée :), you have played " + Long.toString(time_played_in_game));
 			return true;
 		}else{
 			return false;
@@ -104,9 +114,11 @@ public class Game {
 	public void update() {
 		graphic.clear();
 		environment.update();
-		this.graphic.add(new Element(frog.getPosition(), Color.GREEN));
+		this.graphic.add(new Element(this.frog.getPosition().absc, 1, Color.GREEN));
 		testLose();
 		testWin();
 	}
-
+	public void addLane() {
+		this.environment.addLane();
+	}
 }

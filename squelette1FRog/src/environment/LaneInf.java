@@ -1,38 +1,40 @@
 package environment;
+import gameCommons.GameInf;
+import util.Case;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-
-import util.Case;
-import gameCommons.Game;
-
-public class Lane {
-	private  Game game;
-	private  int ord;
+public class LaneInf {
+	private  GameInf game;
+	public  int ord;
 	private int speed;
-	private ArrayList<Car> cars = new ArrayList<>();
+	private ArrayList<CarInf> cars = new ArrayList<>();
 	private boolean leftToRight;
 	private double density;
 	private int timer ;
 
 	// TODO : Constructeur(s)
 
-	public Lane (Game game , int ord ) {
+	public LaneInf(GameInf game , int ord, double density ) {
 		this.game = game;
 		this.ord = ord;
+		this.density = density;
 		this.speed = game.randomGen.nextInt(game.minSpeedInTimerLoops)+1;
 		this.leftToRight = game.randomGen.nextBoolean();
-		this.density = game.defaultDensity;
 
-		for (int i = 1 ; i <  game.width ; i++) {
+		for (int i = 0 ; i <  game.width ; i++) {
 		this.moveCars();
 		this.mayAddCar();
 		this.afficheCar();
 
 		}
+
 	}
 
-
+	public LaneInf(GameInf game, int ord) {
+		this(game, ord, game.defaultDensity);
+	}
 
 
 	public void update() {
@@ -62,13 +64,38 @@ public class Lane {
 
 	// TODO : ajout de methodes
 		public void moveCars (){
-		for (Car car: cars){
-			car.move();
-		}
+			Iterator var3 = this.cars.iterator();
+
+			while(var3.hasNext()) {
+				CarInf car = (CarInf)var3.next();
+				car.move();
+			}
+
+			this.removeOldCars();
 		}
 
+	private void removeOldCars() {
+		ArrayList<CarInf> toBeRemoved = new ArrayList();
+		Iterator var3 = this.cars.iterator();
+
+		CarInf c;
+		while(var3.hasNext()) {
+			c = (CarInf)var3.next();
+			if (!c.dansLesFrontieres()) {
+				toBeRemoved.add(c);
+			}
+
+		}
+		var3 = toBeRemoved.iterator();
+		while(var3.hasNext()) {
+			c = (CarInf)var3.next();
+			this.cars.remove(c);
+		}
+
+	}
+
 		public void afficheCar(){
-		for (Car car : cars){
+		for (CarInf car : cars){
 			car.addToGraphics();
 		}
 	}
@@ -83,17 +110,16 @@ public class Lane {
 	 */
 	private void mayAddCar() {
 		if (isSafe(getFirstCase()) && isSafe(getBeforeFirstCase())) {
-			if (game.randomGen.nextDouble() < density) {
-				cars.add(new Car(game, getBeforeFirstCase(), leftToRight));
+			if (game.randomGen.nextDouble() < this.density) {
+				cars.add(new CarInf(game, getBeforeFirstCase(), leftToRight));
 			}
 		}
 	}
 
 
 
-
 	public boolean isSafe(Case c) {
-		for (Car car : cars) {
+		for (CarInf car : cars) {
 			if (!car.isSafe(c)) {
 				return false;
 			}}
