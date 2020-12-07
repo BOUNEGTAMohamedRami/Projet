@@ -10,7 +10,7 @@ import util.Direction;
 
 import java.awt.*;
 
-public class FrogInf implements IFrog {
+public class    FrogInf implements IFrog {
 
     private GameInf game;
     private Case myPosition;

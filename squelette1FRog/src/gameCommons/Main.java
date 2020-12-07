@@ -40,16 +40,6 @@ public class Main {
 //		IEnvironment env = new Environment(game);
 //		game.setEnvironment(env);
 //
-//		//Boucle principale : l'environnement s'acturalise tous les tempo milisecondes
-//		Timer timer = new Timer(tempo, new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				game.update();
-//				graphic.repaint();
-//			}
-//		});
-//		timer.setInitialDelay(0);
-//		timer.start();
 //	}
 	// Création de l'environnement Infini !
 		IEnvironment env = new EnvInf(game);
