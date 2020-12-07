@@ -38,7 +38,6 @@ public class LaneInf {
 
 
 	public void update() {
-		// TODO
 			if (this.timer <= this.speed) {
 				mayAddCar();
 				afficheCar();

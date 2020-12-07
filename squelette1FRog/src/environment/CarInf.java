@@ -41,14 +41,6 @@ public class CarInf {
 
 	/* Fourni : addToGraphics() permettant d'ajouter un element graphique correspondant a la voiture*/
 	 public void addToGraphics() {
-//		for (int i = 0; i < length; i++) {
-//			Color color = colorRtL;
-//			if (this.leftToRight) {
-//				color = colorLtR;
-//			}
-//			game.getGraphic().add(new Element(leftPosition.absc + i, leftPosition.ord, color));
-//		}
-
 		 for(int i = 0; i < this.length; ++i) {
 			 this.game.getGraphic().add(new Element(this.leftPosition.absc + i,
 					 this.leftPosition.ord - this.game.movement_up_down, this.leftToRight ? this.colorLtR : this.colorRtL));
